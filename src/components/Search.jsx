@@ -10,14 +10,14 @@ export default function Search({ darkMode, onSearch }) {
   }
 
   return (
-    <div className={`relative px-4 md:px-52 py-4 ${darkMode ? "bg-gray-900": "bg-gray-300"}`}>
+    <div className={`relative px-4 md:px-52 py-4 ${darkMode ? "bg-dark-600": "bg-light-800"}`}>
       <form 
         onSubmit={handleSubmit} 
-        className={`relative ${darkMode ? "bg-gray-800 text-gray-300" : "bg-gray-300 text-gray-800"} shadow-md text-md rounded-full px-4 py-2 outline-none w-full`}
+        className={`relative ${darkMode ? "bg-true-gray-800 text-light-800" : "bg-light-400 text-dark-200"} shadow-md text-md rounded-full px-4 py-2 outline-none w-full`}
       >
         <input 
           ref={searchQuery}
-          className={`w-full ${darkMode ? "bg-gray-800 text-gray-300": "bg-gray-300 text-gray-800"} border-none focus:outline-none`}
+          className={`w-full ${darkMode ? "bg-true-gray-800 text-light-800": "bg-light-400 text-dark-200"} border-none focus:outline-none`}
           placeholder="Search Movie" 
           type="text"
         />  

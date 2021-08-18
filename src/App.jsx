@@ -13,7 +13,7 @@ function App() {
 
   return (
     <Router>
-      <div className={`App ${darkMode ? "bg-gray-900" : "bg-gray-300"} h-screen overflow-x-hidden`}>
+      <div className={`App ${darkMode ? "bg-dark-600" : "bg-light-800"} h-screen overflow-x-hidden`}>
         <Navbar darkMode={darkMode} setDarkMode={setDarkMode} brand="React IMDB" />
         <Switch>
           <Route exact path={["/", "/search/:query", "/page/:pageNumber"]}>

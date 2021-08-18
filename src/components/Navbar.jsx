@@ -6,7 +6,7 @@ export default function Navbar({ darkMode, setDarkMode, brand }) {
     <nav className={`flex justify-around items-center py-2 sticky z-50 top-0 backdrop-filter ${darkMode ? "backdrop-brightness-75" : "backdrop-brightness-125"} backdrop-blur-lg w-full h-12`}>
       <Link to="/">
         {/*<h2 className="text-xl ml-4 md:ml-52 font-bold text-white">{brand}</h2>*/}
-        <h2 className={`text-xl font-bold ${darkMode ? "text-white" : "text-gray-800"}`}>{brand}</h2>
+        <h2 className={`text-xl font-bold ${darkMode ? "text-light-500" : "text-dark-300"}`}>{brand}</h2>
       </Link>
       <div className="flex space-x-12">
         <img
