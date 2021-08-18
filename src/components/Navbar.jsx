@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom'
 
 export default function Navbar({ darkMode, setDarkMode, brand }) {
   return (
-    <nav className="flex justify-around items-center py-2 sticky z-50 top-0 backdrop-filter backdrop-brightness-125 dark:backdrop-brightness-75 backdrop-blur-lg w-full h-12">
+    <nav className="flex justify-between px-4 sm:px-0 sm:justify-around items-center py-2 sticky z-50 top-0 backdrop-filter backdrop-brightness-125 dark:backdrop-brightness-75 backdrop-blur-lg w-full">
       <Link to="/">
         {/*<h2 className="text-xl ml-4 md:ml-52 font-bold text-white">{brand}</h2>*/}
-        <h2 className="text-xl font-bold text-dark-300 dark:text-light-500">{brand}</h2>
+        <h2 className="text-xl font-bold text-teal-500">{brand}</h2>
       </Link>
       <div className="flex space-x-12">
         <img
-          className="w-32" 
+          className="w-32 hidden md:block" 
           src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg" 
           alt="the moviedb attribution" 
         />
