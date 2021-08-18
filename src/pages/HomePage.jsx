@@ -9,7 +9,7 @@ import Button from '../components/Button'
 import TMDB from '../API'
 
 
-function Home({darkMode}) {
+function Home() {
   const { pageNumber, query } = useParams()
   const history = useHistory()
   const [searchQuery, setSearchQuery] = useState(query || "")
@@ -36,10 +36,9 @@ function Home({darkMode}) {
           title={heroTitle.title} 
           description={heroTitle.overview}
           link={`/title/${heroTitle.media_type}/${heroTitle.id}`} 
-          darkMode={darkMode}
         />
       }
-      <Search darkMode={darkMode} onSearch={onSearch} />
+      <Search onSearch={onSearch} />
       {titles.data && 
         <TitleList 
           header={searchQuery ? "Search Results" : "Popular Today"}
@@ -48,17 +47,15 @@ function Home({darkMode}) {
       }
       <div className="flex justify-center py-6 space-x-4">
         {page > 1 &&
-            <Button 
-              darkMode={darkMode}
-              onClick={() => navigatePage(page - 1)}
-              text="< Previous Page"
-            />
-        }
           <Button 
-            darkMode={darkMode}
-            onClick={() => navigatePage(page + 1)}
-            text="Next Page >"
+            onClick={() => navigatePage(page - 1)}
+            text="< Previous Page"
           />
+        }
+        <Button 
+          onClick={() => navigatePage(page + 1)}
+          text="Next Page >"
+        />
       </div>
 		</>
 	)

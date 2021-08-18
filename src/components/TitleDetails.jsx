@@ -2,15 +2,18 @@ import React, {useState} from 'react'
 
 import Card from './Card'
 
-function TitleDetails({ darkMode, title }) {
+function TitleDetails({ title }) {
   const [showFullPlot, setShowFullPlot] = useState(false)
 	return (
-    <div className="md:h-5/6 bg-fixed bg-cover bg-center py-8 px-8 md:px-24" style={{backgroundImage: `url(${title.backdrop_path})`}}>
-    	<div className={`w-full flex flex-col sm:flex-row items-center sm:items-start rounded-2xl p-2 shadow-xl backdrop-filter ${darkMode ? "backdrop-brightness-50" : "backdrop-brightness-75"} backdrop-blur-sm`}>
+    <div 
+      className="md:h-5/6 bg-fixed bg-cover bg-center py-8 px-8 md:px-24" 
+      style={{backgroundImage: `url(${title.backdrop_path})`}}
+    >
+    	<div className="w-full flex flex-col sm:flex-row items-center sm:items-start rounded-2xl p-2 shadow-xl backdrop-filter backdrop-brightness-75 dark:backdrop-brightness-50 backdrop-blur-sm">
       	<div className="w-auto sm:w-80 object-cover">
       		<Card image={title.poster_path} title={title.name} />
       	</div>
-      	<div className={`flex-1 px-2 sm:px-8 py-4 space-y-3 ${darkMode ? "text-light-800" : "text-white"}`}>
+      	<div className="flex-1 px-2 sm:px-8 py-4 space-y-3 text-white dark:text-light-800">
       		<a href={title.homepage}>
       			<h2 className="text-3xl font-bold text-light-500">{title.name}</h2>
       		</a>

@@ -7,7 +7,7 @@ import BreadCrumb from '../components/BreadCrumb'
 
 import TMDB from '../API'
 
-function TitlePage({darkMode}) {
+function TitlePage() {
 	const { type, id } = useParams()
 	const title = TMDB.getTitle(type, id)
 	const actors = TMDB.getActors(type, id)
@@ -17,17 +17,16 @@ function TitlePage({darkMode}) {
 			{title.data && (
 				<>
 {/*				<BreadCrumb
-					darkMode={darkMode} 
 					paths={[
 						{name: "home", location:"/"}, 
 						{name: title.data.title, location: `/title/${type}/${id}`}
 					]} 
 				/>*/}
-					<TitleDetails darkMode={darkMode} title={title.data} />
+					<TitleDetails title={title.data} />
 				</>
 				)
 			}
-			{actors && <ActorList header="Actors" actors={actors} />}
+			{actors && <ActorList header="Cast" actors={actors} />}
 		</>
 	)
 }

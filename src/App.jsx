@@ -9,18 +9,25 @@ import NotFoundPage from './pages/NotFoundPage'
 
 
 function App() {
-  const [darkMode, setDarkMode] = useState(true)
+  const [darkMode, setDarkMode] = useState(
+    window.matchMedia('(prefers-color-scheme: dark)').matches ? true : false
+  )
 
   return (
+    <div className={`App ${darkMode && "dark"}`}>
     <Router>
-      <div className={`App ${darkMode ? "bg-dark-600" : "bg-light-800"} h-screen overflow-x-hidden`}>
-        <Navbar darkMode={darkMode} setDarkMode={setDarkMode} brand="React IMDB" />
+      <div className="bg-light-800 dark:bg-dark-600 h-screen overflow-x-hidden">
+        <Navbar 
+          darkMode={darkMode}
+          setDarkMode={setDarkMode} 
+          brand="React IMDB" 
+        />
         <Switch>
           <Route exact path={["/", "/search/:query", "/page/:pageNumber"]}>
-            <HomePage darkMode={darkMode} />
+            <HomePage />
           </Route>
           <Route path="/title/:type/:id">
-            <TitlePage darkMode={darkMode} />
+            <TitlePage />
           </Route>
           <Route path="*">
             <NotFoundPage />
@@ -28,6 +35,7 @@ function App() {
         </Switch>
       </div>
     </Router>
+    </div>
   )
 }
 
