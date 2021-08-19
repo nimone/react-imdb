@@ -23,7 +23,7 @@ function App() {
           brand="React IMDB" 
         />
         <Switch>
-          <Route exact path={["/", "/search/:query"]}>
+          <Route exact path="/">
             <HomePage />
           </Route>
           <Route path="/title/:type/:id">

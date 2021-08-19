@@ -1,5 +1,4 @@
-import React, { useState, useRef, useEffect, useReducer } from 'react'
-import { useHistory, useParams } from 'react-router-dom'
+import React, { useState, useEffect, useReducer } from 'react'
 
 import Hero from '../components/Hero'
 import Search from '../components/Search'
@@ -8,12 +7,29 @@ import Button from '../components/Button'
 
 import TMDB from '../API'
 
+const initialTitlesState = { 
+  page: 0,
+  data: [],
+}
+
 const titlesReducer = (state, {type, payload}) => {
   switch(type) {
-    case 'SET_TITLES':
-      return payload
-    case 'UPDATE_TITLES':
-      return [...state, ...payload]
+    case 'SET_INITIAL':
+      return initialTitlesState
+
+    case 'ADD_TITLES':
+      return {
+        page: state.page + 1,
+        // data: [...state.data, ...payload],
+
+        // Handle duplicates? So that react complain about same keys
+        data: [
+          ...new Map(
+            [...state.data, ...payload].map(el => [el.id, el])
+          ).values()
+        ],
+      }
+
     default:
       throw new Error()
   }
@@ -21,30 +37,23 @@ const titlesReducer = (state, {type, payload}) => {
 
 
 function Home() {
-  const { query } = useParams()
-  const history = useHistory()
-  const [searchQuery, setSearchQuery] = useState(query || "")
-  const [page, setPage] = useState(1)
-
-  const [titles, dispatch] = useReducer(titlesReducer, [])
-  
-  let heroTitle = titles && titles[0]
+  const [searchQuery, setSearchQuery] = useState("")
+  const [titles, dispatch] = useReducer(titlesReducer, initialTitlesState)
+  let heroTitle = titles.data && titles.data[0]
+ 
 
   useEffect(() => {
-    async function fetchNewTitles(page, searchQuery) {
-      const newTitles = await TMDB.getMoviesAndTV(page, searchQuery)
+    dispatch({ type: 'SET_INITIAL' })
+    fetchTitles(1, searchQuery)
+  }, [searchQuery])
 
-      page > 1 
-      ? dispatch({ type: 'UPDATE_TITLES', payload: newTitles}) 
-      : dispatch({ type: 'SET_TITLES', payload: newTitles}) 
-    }
-    fetchNewTitles(page, searchQuery)
-  }, [page, searchQuery])
+  const fetchTitles = async (page, searchTerm="") => {
+    const newTitles = await TMDB.getMoviesAndTV(page, searchQuery)
+    dispatch({ type: 'ADD_TITLES', payload: newTitles}) 
+  }
 
-  const onSearch = query => {
-    setPage(1)
-    setSearchQuery(query)
-    history.push("/search/" + query)
+  const handlePagination = () => {
+    fetchTitles(titles.page + 1)
   }
 
 	return (
@@ -57,16 +66,16 @@ function Home() {
           link={`/title/${heroTitle.media_type}/${heroTitle.id}`} 
         />
       }
-      <Search onSearch={onSearch} />
-      {titles && 
+      <Search setSearch={setSearchQuery} />
+      {titles.data && 
         <TitleList 
           header={searchQuery ? "Search Results" : "Popular Today"}
-          titles={titles}
+          titles={titles.data}
         />
       }
       <div className="flex justify-center py-6 space-x-4">     
         <Button 
-          onClick={() => setPage(page + 1)}
+          onClick={handlePagination}
           text="Load More"
         />
       </div>
