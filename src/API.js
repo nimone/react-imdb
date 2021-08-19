@@ -1,5 +1,4 @@
 import useFetch from './useFetch'
-// import { TMDB_API_KEY } from "../env"
 
 const TMDB_API_KEY = import.meta.env.VITE_TMDB_API_KEY
 const API_BASE_URL = "https://api.themoviedb.org/3",
@@ -9,21 +8,21 @@ IMAGE_BASE_URL = "https://image.tmdb.org/t/p",
 // posterImgURL = "https://image.tmdb.org/t/p/original",	
 
 TMDB = {
-	getMoviesAndTV: (page, searchTerm="") => {
-		const result = useFetch(searchTerm 
+	getMoviesAndTV: async(page, searchTerm="") => {
+		const resp = await fetch(searchTerm 
 			? `${SEARCH_BASE_URL}&query=${searchTerm}&page=${page}`
 			: `${TRENDING_BASE_URL}&page=${page}`
 		)
-
-		if (result.data) {
-			result.data = result.data.results.filter(res => res.media_type !== "person")
-			result.data = result.data.map(title => ({
+		const respJSON = await resp.json()
+		
+		const result = respJSON.results
+			.filter(res => res.media_type !== "person")
+			.map(title => ({
 				...title,
 				backdrop_path: title.backdrop_path ? IMAGE_BASE_URL + "/w1280" + title.backdrop_path : null,
 				poster_path: title.poster_path ? IMAGE_BASE_URL + "/w342" + title.poster_path : null,
 				title: title.media_type === "movie" ? title.title : title.name 
 			}))
-		}
 
 		return result
 	},
