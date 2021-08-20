@@ -4,6 +4,7 @@ import Hero from '../components/Hero'
 import Search from '../components/Search'
 import TitleList from '../components/TitleList'
 import Button from '../components/Button'
+import Loader from '../components/Loader'
 
 import TMDB from '../API'
 
@@ -38,6 +39,7 @@ const titlesReducer = (state, {type, payload}) => {
 
 function Home() {
   const [searchQuery, setSearchQuery] = useState("")
+  const [loading, setLoading] = useState(false)
   const [titles, dispatch] = useReducer(titlesReducer, initialTitlesState)
   let heroTitle = titles.data && titles.data[0]
  
@@ -48,8 +50,10 @@ function Home() {
   }, [searchQuery])
 
   const fetchTitles = async (page, searchTerm="") => {
+    setLoading(true)
     const newTitles = await TMDB.getMoviesAndTV(page, searchQuery)
     dispatch({ type: 'ADD_TITLES', payload: newTitles}) 
+    setLoading(false)
   }
 
   const handlePagination = () => {
@@ -73,12 +77,15 @@ function Home() {
           titles={titles.data}
         />
       }
-      <div className="flex justify-center py-6 space-x-4">     
-        <Button 
-          onClick={handlePagination}
-          text="Load More"
-        />
-      </div>
+      {loading ? <Loader/> : (
+        <div className="flex justify-center py-6 space-x-4">     
+          <Button 
+            onClick={handlePagination}
+            text="Load More"
+          />
+        </div>
+        )
+      }
 		</>
 	)
 }
