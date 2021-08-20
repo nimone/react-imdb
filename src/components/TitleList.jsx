@@ -14,7 +14,8 @@ export default function TitleList({ header, titles }) {
             <Card
               id={t.id} 
               title={t.title}
-              image={t.poster_path} 
+              image={t.poster_path}
+              transition 
             />
           </Link>
         </div>
