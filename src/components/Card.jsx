@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function Card({ image, title, showTitle, transition }) {
   return (
-    <div className="relative text-center w-full h-full bg-black rounded-2xl overflow-hidden shadow-md">
+    <div className="relative text-center w-full h-full bg-true-gray-400 dark:bg-dark-800 rounded-2xl overflow-hidden shadow-md">
       {image ?
         <img 
           className={`w-full h-full object-cover ${transition ? "transition duration-500 ease-out transform hover:(shadow-lg scale-120)" : ""}`} 
