@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 
 import TitleDetails from '../components/TitleDetails'
 import ActorList from '../components/ActorList'
-import BreadCrumb from '../components/BreadCrumb'
+import Loader from '../components/Loader'
 
 import TMDB from '../API'
 
@@ -14,19 +14,9 @@ function TitlePage() {
 
 	return (
 		<>
-			{title.data && (
-				<>
-{/*				<BreadCrumb
-					paths={[
-						{name: "home", location:"/"}, 
-						{name: title.data.title, location: `/title/${type}/${id}`}
-					]} 
-				/>*/}
-					<TitleDetails title={title.data} />
-				</>
-				)
-			}
+			{title.data && <TitleDetails title={title.data} />}
 			{actors && <ActorList header="Cast" actors={actors} />}
+			{!(title.data || actors) && <Loader />}
 		</>
 	)
 }
