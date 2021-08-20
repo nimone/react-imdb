@@ -7,12 +7,12 @@ export default function Hero({ image, title, link, description}) {
       className="relative h-2/3 bg-cover bg-fixed bg-center" 
       style={{backgroundImage: `url(${image})`}}
     >
-      <div className="w-full absolute bottom-0 bg-black bg-opacity-30 dark:(bg-gradient-to-t from-dark-600 to-transparent)">
+      <div className="w-full h-full flex items-end text-white absolute bottom-0 bg-gradient-to-t from-dark-600 to-transparent">
         <div className="sm:3/2 md:w-1/2 mx-8 md:ml-56 py-10">
           <Link to={link}>
-            <h3 className="text-2xl font-bold text-white mb-5">{title}</h3>
+            <h3 className="text-2xl drop-shadow-md font-bold mb-5">{title}</h3>
           </Link>
-          <p className="text-white text-md">{description}</p>
+          <p className="text-md drop-shadow-md">{description}</p>
         </div>
       </div>
     </div>
