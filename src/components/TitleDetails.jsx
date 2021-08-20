@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
 
 import Card from './Card'
+import TitleOverview from './TitleOverview'
 
 function TitleDetails({ title }) {
-  const [showFullPlot, setShowFullPlot] = useState(false)
 	return (
     <div 
       className="md:h-5/6 bg-fixed bg-cover bg-center py-8 px-8 md:px-24" 
@@ -24,20 +24,7 @@ function TitleDetails({ title }) {
       		</div>
       		<div>
       			<h3 className="text-md uppercase">Plot</h3>
-            <div className="text-sm">
-              {title.overview.length > 200 ? (
-                <>
-            			<p onClick={() => setShowFullPlot(true)} className={`${showFullPlot && "hidden"} inline`}>{title.overview.substring(0,200)}</p>
-                  <p onClick={() => setShowFullPlot(false)} className={`${!showFullPlot && "hidden"} inline`}>{title.overview}</p>
-                  <span 
-                    className="text-gray-400 cursor-pointer"
-                    onClick={() => setShowFullPlot(!showFullPlot)}
-                  >{showFullPlot ? " less" : " ...more"}
-                  </span>
-                </>
-                ) : <p className="inline">{title.overview}</p> 
-              }
-            </div>
+            <TitleOverview text={title.overview} className="text-sm" />
       		</div>
       		<div className="flex justify-center space-x-3 text-center">
       			<div>

@@ -7,7 +7,7 @@ export default function ActorList({ header, actors }) {
   return (
     <FlexContainer title={header}>
       {actors.map(actor => 
-        <div className="m-2 w-44" key={actor.id}>
+        <div className="m-2 w-44" key={actor.credit_id}>
           <Card
             id={actor.id} 
             showTitle={true}

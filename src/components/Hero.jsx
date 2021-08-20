@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import TitleOverview from './TitleOverview'
 
 export default function Hero({ image, title, link, description}) {
   return (
@@ -12,7 +13,8 @@ export default function Hero({ image, title, link, description}) {
           <Link to={link}>
             <h3 className="text-2xl drop-shadow-md font-bold mb-5">{title}</h3>
           </Link>
-          <p className="text-md drop-shadow-md">{description}</p>
+          {/*<p className="text-md drop-shadow-md">{description}</p>*/}
+          <TitleOverview text={description} limit={280} />
         </div>
       </div>
     </div>
