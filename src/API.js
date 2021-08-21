@@ -50,6 +50,38 @@ TMDB = {
 			}))
 		}
 		return actors
+	},
+	getActor: async (id) => {
+		const respData = await fetch(`${API_BASE_URL}/person/${id}?api_key=${TMDB_API_KEY}`)
+		const respLinks = await fetch(`${API_BASE_URL}/person/${id}/external_ids?api_key=${TMDB_API_KEY}`)
+
+		const actor = {
+			data: await respData.json(),
+			links: await respLinks.json(),
+		} 
+
+		return {
+			links: {
+				imdb:
+					actor.links.imdb_id
+					? "http://imdb.com/name/" + actor.links.imdb_id : null,
+				twitter: 
+					actor.links.twitter_id 
+					? "http://twitter.com/" + actor.links.twitter_id : null,
+				instagram:
+					actor.links.instagram_id 
+					? "http://instagram.com/" + actor.links.instagram_id : null,
+				facebook:
+					actor.links.facebook_id
+					? "http://facebook.com/" + actor.links.facebook_id : null,
+			},
+			data: {
+				...actor.data, 
+				profile_path: 
+					actor.data.profile_path 
+					? IMAGE_BASE_URL + "/h632" + actor.data.profile_path : null,
+			}
+		}
 	}
 }
 
