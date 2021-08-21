@@ -13,9 +13,9 @@ TMDB = {
 			? `${SEARCH_BASE_URL}&query=${searchTerm}&page=${page}`
 			: `${TRENDING_BASE_URL}&page=${page}`
 		)
-		const respJSON = await resp.json()
+		const titles = await resp.json()
 		
-		const result = respJSON.results
+		titles.results = titles.results
 			.filter(res => res.media_type !== "person")
 			.map(title => ({
 				...title,
@@ -24,7 +24,7 @@ TMDB = {
 				title: title.media_type === "movie" ? title.title : title.name 
 			}))
 
-		return result
+		return titles
 	},
 	getTitle: (type, id) => {
 		const title = useFetch(`${API_BASE_URL}/${type}/${id}?api_key=${TMDB_API_KEY}`)

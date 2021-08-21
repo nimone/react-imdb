@@ -11,6 +11,8 @@ import TMDB from '../API'
 const initialTitlesState = { 
   page: 0,
   data: [],
+  totalPages: 0,
+  totalTitles: 0,
 }
 
 const titlesReducer = (state, {type, payload}) => {
@@ -21,12 +23,14 @@ const titlesReducer = (state, {type, payload}) => {
     case 'ADD_TITLES':
       return {
         page: state.page + 1,
+        totalPages: payload.total_pages,
+        totalTitles: payload.total_results,
         // data: [...state.data, ...payload],
 
-        // Handle duplicates? So that react complain about same keys
+        // Handle duplicates? So that react doesn't complain about same keys
         data: [
           ...new Map(
-            [...state.data, ...payload].map(el => [el.id, el])
+            [...state.data, ...payload.results].map(el => [el.id, el])
           ).values()
         ],
       }
@@ -73,19 +77,18 @@ function Home() {
       <Search setSearch={setSearchQuery} />
       {titles.data && 
         <TitleList 
+          loadMore={handlePagination}
+          hasMore={titles.totalPages > titles.page}
           header={searchQuery ? "Search Results" : "Popular Today"}
           titles={titles.data}
         />
       }
-      {loading ? <Loader/> : (
-        <div className="flex justify-center py-6 space-x-4">     
-          <Button 
-            onClick={handlePagination}
-            text="Load More"
-          />
-        </div>
-        )
-      }
+      {loading && <Loader/>}
+      <div className="flex justify-center py-6 space-x-4">     
+        {!(loading || titles.totalPages > titles.page) &&
+          <h4 className="text-dark-50 text-xl uppercase">The End</h4>
+        }
+      </div>
 		</>
 	)
 }
