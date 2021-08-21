@@ -21,7 +21,8 @@ export default function Search({ setSearch }) {
   }
 
   return (
-    <div className="relative px-4 md:px-52 py-4 bg-light-800 dark:bg-dark-600">
+    // <div className="relative px-4 md:px-52 py-4 bg-light-800 dark:bg-dark-600">
+    <div className="w-full max-w-5xl m-auto p-4 sm:px-12 bg-light-800 dark:bg-dark-600">
       <div 
         className="relative bg-light-400 text-dark-200 dark:(bg-true-gray-800 text-light-800) shadow-md text-md rounded-full px-4 py-2 outline-none w-full"
       >

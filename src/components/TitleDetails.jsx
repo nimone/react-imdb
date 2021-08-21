@@ -6,10 +6,10 @@ import TitleOverview from './TitleOverview'
 function TitleDetails({ title }) {
 	return (
     <div 
-      className="md:h-5/6 bg-fixed bg-cover bg-center py-8 px-8 md:px-24" 
+      className="md:h-5/6 bg-fixed bg-cover bg-center py-8 px-8" 
       style={{backgroundImage: `url(${title.backdrop_path})`}}
     >
-    	<div className="w-full flex flex-col sm:flex-row items-center sm:items-start rounded-2xl p-2 shadow-xl backdrop-filter backdrop-brightness-75 dark:backdrop-brightness-50 backdrop-blur-sm">
+    	<div className="w-full flex flex-col w-full max-w-5xl m-auto sm:flex-row items-center sm:items-start rounded-2xl p-2 shadow-xl backdrop-filter backdrop-brightness-75 dark:backdrop-brightness-50 backdrop-blur-sm">
       	<div className="w-auto sm:w-80 object-cover">
       		<Card image={title.poster_path} title={title.name} />
       	</div>

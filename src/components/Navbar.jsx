@@ -10,7 +10,7 @@ export default function Navbar({ darkMode, setDarkMode, brand }) {
       </Link>
       <div className="flex space-x-12">
         <img
-          className="w-32 hidden md:block" 
+          className="w-32 hidden sm:block" 
           src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg" 
           alt="the moviedb attribution" 
         />
