@@ -5,6 +5,7 @@ import Search from '../components/Search'
 import TitleList from '../components/TitleList'
 import Button from '../components/Button'
 import Loader from '../components/Loader'
+import End from '../components/End'
 
 import TMDB from '../API'
 
@@ -84,11 +85,8 @@ function Home() {
         />
       }
       {loading && <Loader/>}
-      <div className="flex justify-center py-6 space-x-4">     
-        {!(loading || titles.totalPages > titles.page) &&
-          <h4 className="text-dark-50 text-xl uppercase">The End</h4>
-        }
-      </div>
+      {!(loading || titles.totalPages > titles.page) && <End />}
+
 		</>
 	)
 }
