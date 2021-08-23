@@ -2,7 +2,7 @@ import React from 'react'
 
 function End() {
 	return (
-    <div className="flex flex-col space-y-2 items-center text-center py-6 space-x-4">     
+    <div className="flex flex-col space-y-2 items-center text-center py-6">     
       <h3 className="text-dark-50 text-xl uppercase">The End</h3>
       <h4 className="text-true-gray-500 text-md">
       	Directed by 
@@ -17,7 +17,7 @@ function End() {
       <h4 className="text-true-gray-500 text-md">
       	Produced by 
     		<a 
-    			className="border-2 border-teal-800 rounded-full p-1 m-1 text-true-gray-600 dark:text-true-gray-400" 
+    			className="border-2 border-teal-800 rounded-full px-1 py-px m-1 text-true-gray-600 dark:text-true-gray-400" 
     			href="https://www.themoviedb.org/"
     			target="_blank"
     		>

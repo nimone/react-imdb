@@ -40,8 +40,8 @@ function ActorDetails({ actor, loading, onClose }) {
 
 						<div className="my-4 text-sm">
 							<div>
-								<span className="font-bold">Birth Day: </span> 
-								{actor.data.birthday}
+								<span className="font-bold">Born: </span> 
+								{new Date(actor.data.birthday).toDateString()}
 							</div>
 							<div>
 								<span className="font-bold">Birth Place: </span>
