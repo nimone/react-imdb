@@ -1,17 +1,19 @@
 # [React IMDB](https://react-imdb.pages.dev/)
-A completely responsive IMDB clone made with ReactJS using TMDB API. Browse popular titles and search across your 
-favourite movies & tv series here.
+A completely responsive IMDB like movie database made with ReactJS using TMDB API. Browse popular titles and search across your favourite movies & tv series here.
 
 **Movie/Tv Series page:**
-![Title page screenshot](https://i.ibb.co/CzvjDBc/Screenshot-from-2021-07-30-15-12-27.png)
+![Title page screenshot](https://i.ibb.co/NCTwVw1/Screenshot-from-2021-08-23-12-34-00.png)
 
-**Home Page:**
-![Home page screenshot](https://i.ibb.co/QfY0ZWW/Screenshot-from-2021-07-30-15-11-59.png)
+**Search:**
+![Search page screenshot](https://i.ibb.co/DpXN8F1/Screenshot-from-2021-08-23-12-35-59.png)
+
+**Actor's Info:**
+![Actor's info screenshot](https://i.ibb.co/8z3gYJR/Screenshot-from-2021-08-23-12-38-01.png)
 
 ---
 ## Technologies used 🛠️
 - [React](https://es.reactjs.org/) - Front-End JavaScript library
-- [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework
+- [Windi CSS](https://windicss.org/) - Next generation utility-first CSS framework.
 - [Vite](https://vitejs.dev/) - Frontend Tooling
 
 ---
