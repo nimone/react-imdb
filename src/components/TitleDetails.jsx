@@ -44,18 +44,18 @@ function TitleDetails({ title }) {
                 {title.vote_average ? title.vote_average : "N/A"}
               </span>
             </div>
+            {title.homepage && 
             <div className="m-2">
               <h3 className="font-bold uppercase mb-2">Homepage</h3>
               <a className="capitalize text-blue-200" href={title.homepage} target="_blank">
                 {new URL(title.homepage).hostname.split(".").slice(-2,-1)[0]}
               </a>
             </div>
-            {title.runtime && 
-              <div className="m-2">
-                <h3 className="font-bold uppercase mb-2">Runtime</h3>
-                <span>{title.runtime} min</span>
-              </div>        
             }
+            <div className="m-2">
+              <h3 className="font-bold uppercase mb-2">Runtime</h3>
+              <span>{title.runtime ? `${title.runtime} min` : "N/A"}</span>
+            </div>        
       		</div>
       	</div>
       </div>

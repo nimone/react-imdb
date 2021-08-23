@@ -35,7 +35,7 @@ TMDB = {
 				backdrop_path: title.data.backdrop_path ? IMAGE_BASE_URL + "/w1280" + title.data.backdrop_path : null,
 				poster_path: title.data.poster_path ? IMAGE_BASE_URL + "/w500" + title.data.poster_path : null,
 				name: type === "movie" ? title.data.title : title.data.name,
-				runtime: title.data.runtime ? title.data.runtime : title.data.episode_run_time[0],
+				runtime: title.data.runtime !== undefined ? title.data.runtime : title.data.episode_run_time[0],
 				release_date: title.data.release_date ? title.data.release_date : title.data.first_air_date,
 			}
 		}
